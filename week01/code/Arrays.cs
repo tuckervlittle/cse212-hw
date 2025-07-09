@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 public static class Arrays
 {
     /// <summary>
@@ -13,7 +15,16 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // Create a static array to store the results
+        // Create a for loop to iterate through the number (1-number) 
+        // In the for loop multiply the number by the index while the index is less than or equal to the count
+        var results = new double[length];
+        for (int i = 1; i <= length; i++)
+        {
+            results[i-1] = number * i;
+        }
+
+        return results; // replace this return statement with your own
     }
 
     /// <summary>
@@ -29,5 +40,18 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // Use list.count() - 1 to find the length of the list and store that as a variable (0 index)
+        // Use a for loop with the amount as how many iterations to loop through
+        // Store the last item as a variable using list[index]
+        // Use list.RemoveAt(index) to remove the last item
+        // Use list.insert(0, variable) to add the number to the front
+        int indexOfLast = data.Count() - 1;
+        for (int i = 0; i < amount; i++)
+        {
+            int last = data[indexOfLast];
+            data.RemoveAt(indexOfLast);
+            data.Insert(0, last);
+        }
     }
 }
