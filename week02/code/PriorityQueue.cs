@@ -30,7 +30,7 @@
 
         // Find the index of the item with the highest priority to remove
         var highPriorityIndex = 0;
-        for (int index = 1; index < _queue.Count; index++)
+        for (int index = 1; index < _queue.Count; index++) // Defect 1.1 - (.Count - 1) was not allowing small queues to be sorted properly
         {
             if (_queue[index].Priority > _queue[highPriorityIndex].Priority) // Defect 2 - >= makes it remove last-first
                 highPriorityIndex = index;
