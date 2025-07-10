@@ -2,6 +2,12 @@
 {
     private List<PriorityItem> _queue = new();
 
+    // Need to use Length and check if the list is empty for testing
+    public int Length => _queue.Count;
+    public bool IsEmpty() {
+        return _queue.Count == 0;
+    }
+
     /// <summary>
     /// Add a new value to the queue with an associated priority.  The
     /// node is always added to the back of the queue regardless of 
@@ -24,14 +30,15 @@
 
         // Find the index of the item with the highest priority to remove
         var highPriorityIndex = 0;
-        for (int index = 1; index < _queue.Count - 1; index++)
+        for (int index = 1; index < _queue.Count; index++)
         {
-            if (_queue[index].Priority >= _queue[highPriorityIndex].Priority)
+            if (_queue[index].Priority > _queue[highPriorityIndex].Priority) // Defect 2 - >= makes it remove last-first
                 highPriorityIndex = index;
         }
 
         // Remove and return the item with the highest priority
         var value = _queue[highPriorityIndex].Value;
+        _queue.RemoveAt(highPriorityIndex); // Defect 1 - Wasn't removing.
         return value;
     }
 
