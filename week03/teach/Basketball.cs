@@ -52,6 +52,6 @@ public class Basketball
             i++;
         }
 
-        Console.WriteLine($"Players: {{{string.Join(", ", topPlayers)}}}");
+        Console.WriteLine($"Players: \n{string.Join(",\n ", topPlayers)}");
     }
 }
