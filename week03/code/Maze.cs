@@ -25,6 +25,15 @@ public class Maze
         _mazeMap = mazeMap;
     }
 
+    private void TryMove(int direction, Action action)
+    {
+        if (!_mazeMap.TryGetValue((_currX, _currY), out var directions))
+            throw new InvalidOperationException("Invalid Location");
+        if (!directions[direction])
+            throw new InvalidOperationException("Can't go that way!");
+        action();
+    }
+
     // TODO Problem 4 - ADD YOUR CODE HERE
     /// <summary>
     /// Check to see if you can move left.  If you can, then move.  If you
@@ -33,6 +42,7 @@ public class Maze
     public void MoveLeft()
     {
         // FILL IN CODE
+        TryMove(0, () => _currX--);
     }
 
     /// <summary>
@@ -42,6 +52,7 @@ public class Maze
     public void MoveRight()
     {
         // FILL IN CODE
+        TryMove(1, () => _currX++);
     }
 
     /// <summary>
@@ -51,6 +62,7 @@ public class Maze
     public void MoveUp()
     {
         // FILL IN CODE
+        TryMove(2, () => _currY--);
     }
 
     /// <summary>
@@ -60,6 +72,7 @@ public class Maze
     public void MoveDown()
     {
         // FILL IN CODE
+        TryMove(3, () => _currY++);
     }
 
     public string GetStatus()
